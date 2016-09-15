@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="520c95b9-8cbd-474a-8003-b21ac0a9db51" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Encapsulation/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Encapsulation/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Encapsulation/.idea/description.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Encapsulation/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Encapsulation/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Encapsulation/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Encapsulation/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Encapsulation/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Encapsulation/Encapsulation.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Encapsulation/out/production/Encapsulation/Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Encapsulation/src/Main.java" afterPath="" />
-    </list>
+    <list default="true" id="520c95b9-8cbd-474a-8003-b21ac0a9db51" name="Default" comment="" />
     <ignored path="Copyfile.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
