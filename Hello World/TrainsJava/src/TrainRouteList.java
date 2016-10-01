@@ -14,12 +14,12 @@ public class TrainRouteList {
     public void add(Node node){
 
         if (tail == null){
+            tail = node;
             head = node;
+        }else {
+            tail.next = node;
             tail = node;
         }
-
-        tail.next = node;
-        tail = node;
 
     }
 }
