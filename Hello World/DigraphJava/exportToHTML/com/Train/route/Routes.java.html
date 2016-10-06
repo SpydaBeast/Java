@@ -1,0 +1,192 @@
+<html>
+<head>
+<title>Routes.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(128,128,128); }
+.s3 { color: rgb(104,151,187); }
+.s4 { color: rgb(106,135,89); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Routes.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">com.Train.route</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">java.util.Hashtable</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">Routes { 
+    </span><span class="s0">public </span><span class="s1">Hashtable&lt;Node</span><span class="s0">, </span><span class="s1">Edge&gt; routeTable</span><span class="s0">;</span><span class="s1"> 
+ 
+    </span><span class="s0">public </span><span class="s1">Routes() { 
+        </span><span class="s0">this</span><span class="s1">.routeTable = </span><span class="s0">new </span><span class="s1">Hashtable&lt;Node</span><span class="s0">, </span><span class="s1">Edge&gt;()</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+    </span><span class="s2">//calculates distance</span><span class="s1"> 
+    </span><span class="s0">public int </span><span class="s1">distanceBetween(ArrayList&lt;Node&gt; towns) { 
+ 
+        </span><span class="s0">if</span><span class="s1">(towns.size() &lt; </span><span class="s3">1</span><span class="s1">) 
+            </span><span class="s0">return </span><span class="s3">0</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">int </span><span class="s1">distance</span><span class="s0">, </span><span class="s1">depth</span><span class="s0">, </span><span class="s1">i</span><span class="s0">;</span><span class="s1"> 
+        distance = depth = i = </span><span class="s3">0</span><span class="s0">;</span><span class="s1"> 
+ 
+        </span><span class="s2">//Checks for town in hash table</span><span class="s1"> 
+        </span><span class="s0">while</span><span class="s1">(i &lt; towns.size() - </span><span class="s3">1</span><span class="s1">) { 
+            </span><span class="s0">if</span><span class="s1">(</span><span class="s0">this</span><span class="s1">.routeTable.containsKey(towns.get(i))) { 
+                Edge route = </span><span class="s0">this</span><span class="s1">.routeTable.get(towns.get(i))</span><span class="s0">;</span><span class="s1"> 
+                </span><span class="s2">// check for route</span><span class="s1"> 
+                </span><span class="s0">while</span><span class="s1">(route != </span><span class="s0">null</span><span class="s1">) { 
+                    </span><span class="s0">if</span><span class="s1">(route.destination.equals(towns.get(i + </span><span class="s3">1</span><span class="s1">))) { 
+                        distance += route.weight</span><span class="s0">;</span><span class="s1"> 
+                        depth++</span><span class="s0">;</span><span class="s1"> 
+                        </span><span class="s0">break;</span><span class="s1"> 
+                    } 
+                    route = route.next</span><span class="s0">;</span><span class="s1"> 
+                } 
+            } 
+            </span><span class="s2">// If no route exist throws exception</span><span class="s1"> 
+            </span><span class="s0">else</span><span class="s1"> 
+                System.out.println(</span><span class="s4">&quot;NO SUCH ROUTE&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+            i++</span><span class="s0">;</span><span class="s1"> 
+        } 
+        </span><span class="s0">if</span><span class="s1">(depth != towns.size() - </span><span class="s3">1</span><span class="s1">) 
+ 
+            System.out.print(</span><span class="s4">&quot;NO SUCH ROUTE &quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+        </span><span class="s0">return </span><span class="s1">distance</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+    </span><span class="s2">//Calculates number of stops</span><span class="s1"> 
+    </span><span class="s0">public int </span><span class="s1">numStops(Node start</span><span class="s0">, </span><span class="s1">Node end</span><span class="s0">, int </span><span class="s1">maxStops) </span><span class="s0">throws </span><span class="s1">Exception{ 
+        </span><span class="s0">return </span><span class="s1">findRoutes(start</span><span class="s0">, </span><span class="s1">end</span><span class="s0">, </span><span class="s3">0</span><span class="s0">, </span><span class="s1">maxStops)</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">private int </span><span class="s1">findRoutes(Node start</span><span class="s0">, </span><span class="s1">Node end</span><span class="s0">, int </span><span class="s1">depth</span><span class="s0">, int </span><span class="s1">maxStops) { 
+        </span><span class="s0">int </span><span class="s1">routes = </span><span class="s3">0</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s2">//Check if start and end nodes exists in route table</span><span class="s1"> 
+        </span><span class="s0">if</span><span class="s1">(</span><span class="s0">this</span><span class="s1">.routeTable.containsKey(start) &amp;&amp; </span><span class="s0">this</span><span class="s1">.routeTable.containsKey(end)) { 
+ 
+             </span><span class="s2">//Traverse all possible routes and for each, checks destination,</span><span class="s1"> 
+             </span><span class="s2">//and number of stops within allowed, and counts possible route.</span><span class="s1"> 
+            depth++</span><span class="s0">;</span><span class="s1"> 
+            </span><span class="s0">if</span><span class="s1">(depth &gt; maxStops)        </span><span class="s2">//Check if within limits</span><span class="s1"> 
+                </span><span class="s0">return </span><span class="s3">0</span><span class="s0">;</span><span class="s1"> 
+            start.visited = </span><span class="s0">true;       </span><span class="s2">//Mark start node as visited</span><span class="s1"> 
+            Edge edge = </span><span class="s0">this</span><span class="s1">.routeTable.get(start)</span><span class="s0">;</span><span class="s1"> 
+            </span><span class="s0">while</span><span class="s1">(edge != </span><span class="s0">null</span><span class="s1">) { 
+ 
+                </span><span class="s2">//Increments routes then continue to next node</span><span class="s1"> 
+                </span><span class="s0">if</span><span class="s1">(edge.destination.equals(end)) { 
+                    routes++</span><span class="s0">;</span><span class="s1"> 
+                    edge = edge.next</span><span class="s0">;</span><span class="s1"> 
+                    </span><span class="s0">continue;</span><span class="s1"> 
+                } 
+                </span><span class="s2">// Destination does not match, and</span><span class="s1"> 
+                </span><span class="s2">// node not visited recursively traverse destination node</span><span class="s1"> 
+                </span><span class="s0">else if</span><span class="s1">(!edge.destination.visited) { 
+                    routes += findRoutes(edge.destination</span><span class="s0">, </span><span class="s1">end</span><span class="s0">, </span><span class="s1">depth</span><span class="s0">, </span><span class="s1">maxStops)</span><span class="s0">;</span><span class="s1"> 
+                    depth--</span><span class="s0">;</span><span class="s1"> 
+                } 
+                edge = edge.next</span><span class="s0">;</span><span class="s1"> 
+            } 
+        } 
+        </span><span class="s0">else</span><span class="s1"> 
+            System.out.println(</span><span class="s4">&quot;NO SUCH ROUTE&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+        </span><span class="s2">//mark the start node as visited before exits</span><span class="s1"> 
+        start.visited = </span><span class="s0">false;</span><span class="s1"> 
+        </span><span class="s0">return </span><span class="s1">routes</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+     </span><span class="s2">//Shortest route;</span><span class="s1"> 
+     </span><span class="s2">//Recursive function</span><span class="s1"> 
+    </span><span class="s0">public int </span><span class="s1">shortestRoute(Node start</span><span class="s0">, </span><span class="s1">Node end) </span><span class="s0">throws </span><span class="s1">Exception { 
+        </span><span class="s2">//Wrapper to maintain weight</span><span class="s1"> 
+        </span><span class="s0">return </span><span class="s1">findShortestRoute(start</span><span class="s0">, </span><span class="s1">end</span><span class="s0">, </span><span class="s3">0</span><span class="s0">, </span><span class="s3">0</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+ 
+    </span><span class="s2">//Shortest route between two nodes</span><span class="s1"> 
+    </span><span class="s0">private int </span><span class="s1">findShortestRoute(Node start</span><span class="s0">, </span><span class="s1">Node end</span><span class="s0">, int </span><span class="s1">weight</span><span class="s0">, int </span><span class="s1">shortestRoute){ 
+        </span><span class="s2">//Checks for start and end nodes</span><span class="s1"> 
+        </span><span class="s0">if</span><span class="s1">(</span><span class="s0">this</span><span class="s1">.routeTable.containsKey(start) &amp;&amp; </span><span class="s0">this</span><span class="s1">.routeTable.containsKey(end)) { 
+ 
+             </span><span class="s2">//Start traverse all possible</span><span class="s1"> 
+             </span><span class="s2">//routes and checks destination</span><span class="s1"> 
+            start.visited = </span><span class="s0">true;       </span><span class="s2">//Mark start node as visited</span><span class="s1"> 
+            Edge edge = </span><span class="s0">this</span><span class="s1">.routeTable.get(start)</span><span class="s0">;</span><span class="s1"> 
+            </span><span class="s0">while</span><span class="s1">(edge != </span><span class="s0">null</span><span class="s1">) { 
+                </span><span class="s2">//If node not already visited, or is the destination, increment weight</span><span class="s1"> 
+                </span><span class="s0">if</span><span class="s1">(edge.destination == end || !edge.destination.visited) 
+                    weight += edge.weight</span><span class="s0">;</span><span class="s1"> 
+ 
+                </span><span class="s2">//compares route to shortest route</span><span class="s1"> 
+                </span><span class="s0">if</span><span class="s1">(edge.destination.equals(end)) { 
+                    </span><span class="s0">if</span><span class="s1">(shortestRoute == </span><span class="s3">0 </span><span class="s1">|| weight &lt; shortestRoute) 
+                        shortestRoute = weight</span><span class="s0">;</span><span class="s1"> 
+                    start.visited = </span><span class="s0">false;</span><span class="s1"> 
+                    </span><span class="s0">return </span><span class="s1">shortestRoute</span><span class="s0">;           </span><span class="s2">//Unvisit node and return shortest route</span><span class="s1"> 
+                } 
+ 
+                </span><span class="s2">//Destination does not match, and destination node not yet visited, traverse destination node</span><span class="s1"> 
+                </span><span class="s0">else if</span><span class="s1">(!edge.destination.visited) { 
+                    shortestRoute = findShortestRoute(edge.destination</span><span class="s0">, </span><span class="s1">end</span><span class="s0">, </span><span class="s1">weight</span><span class="s0">, </span><span class="s1">shortestRoute)</span><span class="s0">;</span><span class="s1"> 
+                    </span><span class="s2">//Decrement weight as we backtrack</span><span class="s1"> 
+                    weight -= edge.weight</span><span class="s0">;</span><span class="s1"> 
+                } 
+                edge = edge.next</span><span class="s0">;</span><span class="s1"> 
+            } 
+        } 
+        </span><span class="s0">else</span><span class="s1"> 
+            System.out.println(</span><span class="s4">&quot;NO SUCH ROUTE&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+        </span><span class="s2">//Marks node visited</span><span class="s1"> 
+        start.visited = </span><span class="s0">false;</span><span class="s1"> 
+        </span><span class="s0">return </span><span class="s1">shortestRoute</span><span class="s0">;</span><span class="s1"> 
+ 
+    } 
+ 
+    </span><span class="s2">//Shortest route;</span><span class="s1"> 
+    </span><span class="s0">public int </span><span class="s1">numRoutesWithin(Node start</span><span class="s0">, </span><span class="s1">Node end</span><span class="s0">, int </span><span class="s1">maxDistance) </span><span class="s0">throws </span><span class="s1">Exception { 
+        </span><span class="s0">return </span><span class="s1">findnumRoutesWithin(start</span><span class="s0">, </span><span class="s1">end</span><span class="s0">, </span><span class="s3">0</span><span class="s0">, </span><span class="s1">maxDistance)</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+    </span><span class="s0">private int </span><span class="s1">findnumRoutesWithin(Node start</span><span class="s0">, </span><span class="s1">Node end</span><span class="s0">, int </span><span class="s1">weight</span><span class="s0">, int </span><span class="s1">maxDistance){ 
+        </span><span class="s0">int </span><span class="s1">routes = </span><span class="s3">0</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s2">//Check if start and end nodes exists</span><span class="s1"> 
+        </span><span class="s0">if</span><span class="s1">(</span><span class="s0">this</span><span class="s1">.routeTable.containsKey(start) &amp;&amp; </span><span class="s0">this</span><span class="s1">.routeTable.containsKey(end)) { 
+            Edge edge = </span><span class="s0">this</span><span class="s1">.routeTable.get(start)</span><span class="s0">;</span><span class="s1"> 
+            </span><span class="s0">while</span><span class="s1">(edge != </span><span class="s0">null</span><span class="s1">) { 
+                weight += edge.weight</span><span class="s0">;</span><span class="s1"> 
+                </span><span class="s0">if</span><span class="s1">(weight &lt;= maxDistance) { 
+                    </span><span class="s0">if</span><span class="s1">(edge.destination.equals(end)) { 
+                        routes++</span><span class="s0">;</span><span class="s1"> 
+                        routes += findnumRoutesWithin(edge.destination</span><span class="s0">, </span><span class="s1">end</span><span class="s0">, </span><span class="s1">weight</span><span class="s0">, </span><span class="s1">maxDistance)</span><span class="s0">;</span><span class="s1"> 
+                        edge = edge.next</span><span class="s0">;</span><span class="s1"> 
+                        </span><span class="s0">continue;</span><span class="s1"> 
+                    } 
+                    </span><span class="s0">else </span><span class="s1">{ 
+                        routes += findnumRoutesWithin(edge.destination</span><span class="s0">, </span><span class="s1">end</span><span class="s0">, </span><span class="s1">weight</span><span class="s0">, </span><span class="s1">maxDistance)</span><span class="s0">;</span><span class="s1"> 
+                        weight -= edge.weight</span><span class="s0">;  </span><span class="s2">//Decrement weight as we backtrack</span><span class="s1"> 
+                    } 
+                } 
+                </span><span class="s0">else</span><span class="s1"> 
+                    weight -= edge.weight</span><span class="s0">;</span><span class="s1"> 
+ 
+                edge = edge.next</span><span class="s0">;</span><span class="s1"> 
+            } 
+        } 
+        </span><span class="s0">else</span><span class="s1"> 
+            System.out.println(</span><span class="s4">&quot;NO SUCH ROUTE&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">return </span><span class="s1">routes</span><span class="s0">;</span><span class="s1"> 
+    } 
+}</span></pre>
+</body>
+</html>

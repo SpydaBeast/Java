@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Edge.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(128,128,128); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Edge.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">com.Train.route</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">Edge { 
+    </span><span class="s2">//Origin town</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Node origin</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s2">//Destination town</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Node destination</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s2">//Route destination</span><span class="s1"> 
+    </span><span class="s0">public int </span><span class="s1">weight</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s2">//next possible route</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Edge next</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s2">//constructor</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Edge(Node origin</span><span class="s0">, </span><span class="s1">Node destination</span><span class="s0">, int </span><span class="s1">weight) { 
+        </span><span class="s0">this</span><span class="s1">.origin         = origin</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">this</span><span class="s1">.destination    = destination</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">this</span><span class="s1">.weight         = weight</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">this</span><span class="s1">.next       = </span><span class="s0">null;</span><span class="s1"> 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Edge next(Edge edge) { 
+        </span><span class="s0">this</span><span class="s1">.next = edge</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">return this;</span><span class="s1"> 
+    } 
+} 
+</span></pre>
+</body>
+</html>
