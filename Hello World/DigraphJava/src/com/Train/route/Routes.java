@@ -112,7 +112,7 @@ public class Routes {
                     if(shortestRoute == 0 || weight < shortestRoute)
                         shortestRoute = weight;
                     start.visited = false;
-                    return shortestRoute; 			//Unvisit node and return shortest route
+                    return shortestRoute; 			//Unvisited node and return shortest route
                 }
 
                 //Destination does not match, and destination node not yet visited, traverse destination node
