@@ -24,7 +24,7 @@ public class ShoppingCart {
         Scanner scanner = new Scanner(System.in);
 
         do{
-            System.out.println("Enter [1 = add, 2 = Delete, 0 = Enter");
+            System.out.println("Enter [1 = add, 2 = Delete, 0 = Enter]");
             choice = scanner.nextInt();
 
             switch (choice){
@@ -35,8 +35,7 @@ public class ShoppingCart {
                     Scanner scan = new Scanner(System.in);
                     System.out.println("Enter Product sku to remove item");
                     String sku = scan.next();
-                   
-                   // delect method may not work as intended
+
                     delete(sku);
                     break;
                 default:
@@ -45,8 +44,8 @@ public class ShoppingCart {
         } while (choice != 0);
     }
 
-    // **** Intellj suggested to call delete method in this class
     private void delete(String sku) {
+        cartDataAccess.delete(sku);
     }
 
     public void  add(){
@@ -75,9 +74,9 @@ public class ShoppingCart {
     private  void recordTransaction(ArrayList<Item> purchaseditems){
         //creates transaction
         Transaction transaction = new Transaction();
-        transaction.setSku("0001");
+        transaction.setSku(); //need method for generating sku
 
-        SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
         
         // ****Set date, and dataFormat methods resolved in System Class
         
@@ -87,7 +86,7 @@ public class ShoppingCart {
         // ****Start here resolving errors for the setSku method
         
         Operator operator = new Operator();
-        operator.setSku("0002");
+        operator.setSku();
         transaction.setOperator(operator);
     }
 
