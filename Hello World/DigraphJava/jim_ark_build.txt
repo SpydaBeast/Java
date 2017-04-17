@@ -1,0 +1,2 @@
+Jim's Ark build
+"C:\Program Files (x86)\Steam\steamapps\common\ARK\ShooterGame\Binaries\Win64\ShooterGame.exe" +connect 167.114.0.29:17815
